@@ -7,7 +7,7 @@ import kotlinx.serialization.json.Json
 class Vehicle {
     var id : Long? = null
     var shortIdentifier : String? = null
-    var longName : String? = null
+    var longIdentifier : String? = null
     var externalIds : ArrayList<ExternalId>? = null
     var idCards : ArrayList<IdCards>? = null
     var effective : EffectivePeriod? = null

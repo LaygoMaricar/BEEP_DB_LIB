@@ -5,7 +5,7 @@ import kotlinx.serialization.json.Json
 
 @Serializable
 class CardSet {
-    var profileIds : ArrayList<Long>? = null
+    var profileIds : Long? = null
     var accountRanges : ArrayList<AccountRange>? = null
     var vehicleTypes : ArrayList<Long>? = null
 

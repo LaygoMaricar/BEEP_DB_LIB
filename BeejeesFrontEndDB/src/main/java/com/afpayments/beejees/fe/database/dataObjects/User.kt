@@ -6,7 +6,7 @@ import kotlinx.serialization.json.Json
 @Serializable
 class User {
     var id : Long? = null
-    var companyID : String? = null
+    var companyId : String? = null
     var shortName : String? = null
     var longName : String? = null
     var idCards : ArrayList<IdCards>? = null

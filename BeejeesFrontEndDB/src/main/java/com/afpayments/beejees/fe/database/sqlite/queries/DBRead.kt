@@ -287,7 +287,7 @@ class DBRead {
                 val user = User()
                 while (cursor.moveToNext()) {
                     user.id = cursor.getLong(UsersTable.ID_COL)
-                    user.companyID = (cursor.getString(UsersTable.COMPANY_ID_COL))
+                    user.companyId = (cursor.getString(UsersTable.COMPANY_ID_COL))
                     user.shortName = (cursor.getString(UsersTable.SHORT_NAME_COL))
                     user.longName = (cursor.getString(UsersTable.LONG_NAME_COL))
                     user.effective = EffectivePeriod.fromString(cursor.getString(UsersTable.USER_EFFECTIVE_COL))

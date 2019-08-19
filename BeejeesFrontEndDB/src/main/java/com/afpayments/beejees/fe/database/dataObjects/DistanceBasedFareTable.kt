@@ -19,7 +19,7 @@ class DistanceBasedFareTable {
     var appliesTo : ArrayList<CardSet>? = null
     var activeAt : ArrayList<TimeInterval>? = null
     var effective : EffectivePeriod? = null
-    var baseFare : EffectivePeriod? = null
+    var baseFare : BaseFare? = null
     var incrementalFares : ArrayList<IncrementalFare>? = null
     var accumulative : Boolean? = null
     var prorated : Boolean? = null
