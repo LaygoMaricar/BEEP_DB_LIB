@@ -1,0 +1,182 @@
+package com.afpayments.beejees.fe.database.sqlite.queries
+
+import android.content.ContentValues
+import android.database.sqlite.SQLiteDatabase
+import com.afpayments.beejees.fe.database.dataObjects.User
+import com.afpayments.beejees.fe.database.sqlite.tables.*
+
+class DBInsert {
+
+    companion object{
+        fun blacklist(db : SQLiteDatabase, blacklist : String){
+            val value = ContentValues()
+
+            value.put(BlacklistTable.BLACKLIST_DATA,blacklist)
+
+            db.insertWithOnConflict(BlacklistTable.TABLE_NAME,null, value,SQLiteDatabase.CONFLICT_REPLACE)
+        }
+
+        fun transaction(db : SQLiteDatabase, transaction : String, transactionType : String){
+            val value = ContentValues()
+
+            value.put(TransactionsTable.TRANSACTION_DATA,transaction)
+            value.put(TransactionsTable.TRANSACTION_TYPE,transactionType)
+
+            db.insertWithOnConflict(TransactionsTable.TABLE_NAME,null,value,SQLiteDatabase.CONFLICT_REPLACE)
+        }
+
+        fun cardTransaction(db : SQLiteDatabase, transaction : String){
+            val value = ContentValues()
+
+            value.put(CardTransactionsTable.TRANSACTION_DATA,transaction)
+
+            db.insertWithOnConflict(CardTransactionsTable.TABLE_NAME,null,value,SQLiteDatabase.CONFLICT_REPLACE)
+        }
+
+        fun report(db : SQLiteDatabase, reportData : String, dateInserted : String){
+            val value = ContentValues()
+
+            value.put(UserLogsTable.REPORT_DATA,reportData)
+            value.put(UserLogsTable.DATE_INSERTED,dateInserted)
+
+            db.insertWithOnConflict(UserLogsTable.TABLE_NAME,null,value,SQLiteDatabase.CONFLICT_REPLACE)
+        }
+
+        fun user(db: SQLiteDatabase, id : Long, companyId : String, shortName : String, longName : String, uid : String, role : String, userEffective : String, cardEffective : String){
+            val value = ContentValues()
+
+            value.put(UsersTable.ID,id)
+            value.put(UsersTable.COMPANY_ID,companyId)
+            value.put(UsersTable.SHORT_NAME,shortName)
+            value.put(UsersTable.LONG_NAME,longName)
+            value.put(UsersTable.UID,uid.toUpperCase())
+            value.put(UsersTable.ROLE,role)
+            value.put(UsersTable.USER_EFFECTIVE,userEffective)
+            value.put(UsersTable.CARD_EFFECTIVE,cardEffective)
+
+            db.insertWithOnConflict(UsersTable.TABLE_NAME,null,value,SQLiteDatabase.CONFLICT_REPLACE)
+        }
+
+        fun vehicle(db : SQLiteDatabase, data : String){
+            val value = ContentValues()
+
+            value.put(VehicleTable.DATA,data)
+
+            db.insertWithOnConflict(VehicleTable.TABLE_NAME,null,value,SQLiteDatabase.CONFLICT_REPLACE)
+        }
+
+        fun version(db : SQLiteDatabase, id : Long, tableName : String, version : Int){
+            val value = ContentValues()
+
+            value.put(VersionsTable.ID,id)
+            value.put(VersionsTable.TABLE_NAME_COL,tableName)
+            value.put(VersionsTable.VERSION,version)
+
+            db.insertWithOnConflict(VersionsTable.TABLE_NAME,null,value,SQLiteDatabase.CONFLICT_REPLACE)
+
+        }
+
+        fun cellTowerSegment(db : SQLiteDatabase, id : Long, data : String){
+            val value = ContentValues()
+
+            value.put(CellTowerSegmentsTable.ID,id)
+            value.put(CellTowerSegmentsTable.DATA,data)
+
+            db.insertWithOnConflict(CellTowerSegmentsTable.TABLE_NAME,null,value,SQLiteDatabase.CONFLICT_REPLACE)
+
+        }
+
+        fun discount(db : SQLiteDatabase, id : Long, data : String){
+            val value = ContentValues()
+
+            value.put(DiscountTable.ID,id)
+            value.put(DiscountTable.DATA,data)
+
+            db.insertWithOnConflict(DiscountTable.TABLE_NAME,null,value,SQLiteDatabase.CONFLICT_REPLACE)
+
+        }
+
+        fun distanceBasedFareTable(db : SQLiteDatabase, id : Long, data : String ){
+            val value = ContentValues()
+
+            value.put(DistanceBasedFaresTable.ID,id)
+            value.put(DistanceBasedFaresTable.DATA,data)
+
+            db.insertWithOnConflict(DistanceBasedFaresTable.TABLE_NAME,null,value,SQLiteDatabase.CONFLICT_REPLACE)
+
+        }
+
+        fun fixedBasedFareTable(db : SQLiteDatabase, id : Long, data : String ){
+            val value = ContentValues()
+
+            value.put(FixedBasedFaresTable.ID,id)
+            value.put(FixedBasedFaresTable.DATA,data)
+
+            db.insertWithOnConflict(FixedBasedFaresTable.TABLE_NAME,null,value,SQLiteDatabase.CONFLICT_REPLACE)
+
+        }
+
+        fun parameter(db : SQLiteDatabase, id : Long, data : String, dateInserted: String){
+            val value = ContentValues()
+
+            value.put(ParameterTable.ID,id)
+            value.put(ParameterTable.DATA,data)
+            value.put(ParameterTable.DATE_INSERTED,dateInserted)
+
+            db.insertWithOnConflict(ParameterTable.TABLE_NAME,null,value,SQLiteDatabase.CONFLICT_REPLACE)
+
+        }
+
+        fun route(db : SQLiteDatabase, id : Long, data : String){
+            val value = ContentValues()
+
+            value.put(RouteTable.ID,id)
+            value.put(RouteTable.DATA,data)
+
+            db.insertWithOnConflict(RouteTable.TABLE_NAME,null,value,SQLiteDatabase.CONFLICT_REPLACE)
+
+        }
+
+        fun segment(db : SQLiteDatabase, id : Long, routeId : Long, data : String){
+            val value = ContentValues()
+
+            value.put(SegmentsTable.ID,id)
+            value.put(SegmentsTable.ROUTE_ID,routeId)
+            value.put(SegmentsTable.DATA,data)
+
+            db.insertWithOnConflict(SegmentsTable.TABLE_NAME,null,value,SQLiteDatabase.CONFLICT_REPLACE)
+
+        }
+
+        fun stopBasedFareTable(db : SQLiteDatabase, id : Long, data : String){
+            val value = ContentValues()
+
+            value.put(StopBasedFaresTable.ID,id)
+            value.put(StopBasedFaresTable.DATA,data)
+
+            db.insertWithOnConflict(StopBasedFaresTable.TABLE_NAME,null,value,SQLiteDatabase.CONFLICT_REPLACE)
+
+        }
+
+        fun stop(db : SQLiteDatabase, id : Long, routeId : Long,  data : String){
+            val value = ContentValues()
+
+            value.put(StopTable.ID,id)
+            value.put(StopTable.ROUTE_ID,routeId)
+            value.put(StopTable.DATA,data)
+
+            db.insertWithOnConflict(StopTable.TABLE_NAME,null,value,SQLiteDatabase.CONFLICT_REPLACE)
+
+        }
+
+        fun timeBasedFareTable(db : SQLiteDatabase, id : Long, data : String){
+            val value = ContentValues()
+
+            value.put(TimeBasedFaresTable.ID,id)
+            value.put(TimeBasedFaresTable.DATA,data)
+
+            db.insertWithOnConflict(TimeBasedFaresTable.TABLE_NAME,null,value,SQLiteDatabase.CONFLICT_REPLACE)
+
+        }
+    }
+}
