@@ -1,1 +1,1 @@
-include ':app', ':beepStorage', ':buildSrc', ':BeejeesFrontEndDB'
+include ':app', ':BeejeesFrontEndDB'
