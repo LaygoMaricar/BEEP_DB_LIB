@@ -51,7 +51,7 @@ class Sums {
 
         var type : String? = null
         var total : Total? = null
-        var subTotals : SubTotalProfile? = null
+        var subTotals : ArrayList<SubTotalProfile>? = null
     }
 
     @Serializable

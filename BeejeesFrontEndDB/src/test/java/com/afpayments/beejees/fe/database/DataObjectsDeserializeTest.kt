@@ -5,17 +5,7 @@ import kotlinx.serialization.json.Json
 import org.junit.Assert
 import org.junit.Test
 
-class DataObjectsParseTest {
-
-    @Test
-    fun beepCard(){
-
-    }
-
-    @Test
-    fun beepFinancial(){
-
-    }
+class DataObjectsDeserializeTest {
 
     @Test
     fun cardSet(){
@@ -25,18 +15,8 @@ class DataObjectsParseTest {
     }
 
     @Test
-    fun cashboxReport(){
-
-    }
-
-    @Test
-    fun cashTransaction(){
-
-    }
-
-    @Test
     fun cellTowerSegment(){
-
+        //NO DATA AVAILABLE YET
     }
 
     @Test
@@ -68,19 +48,10 @@ class DataObjectsParseTest {
     }
 
     @Test
-    fun endOfShiftReport(){
-
-    }
-
-    @Test
     fun externalId(){
-
+        //NO DATA
     }
 
-    @Test
-    fun financialTransaction(){
-
-    }
 
     @Test
     fun fixedBasedFareTable(){
@@ -90,28 +61,15 @@ class DataObjectsParseTest {
     }
 
     @Test
-    fun heartbeat(){
-
-    }
-
-    @Test
-    fun idCards(){
-
-    }
-
-    @Test
     fun incrementalFare(){
-
+        val json = "{ \"amount\": 200, \"distance\": 1000, \"startDistance\": 4000 }"
+        var incrementalFare = IncrementalFare.fromString(json)
+        Assert.assertTrue(incrementalFare.amount == 200L)
     }
 
     @Test
     fun incrementalFee(){
-
-    }
-
-    @Test
-    fun luggage(){
-
+        //NO DATA
     }
 
     @Test
@@ -119,21 +77,6 @@ class DataObjectsParseTest {
         val json = "{ \"name\": \"NumberOfIncrements\", \"value\": \"2\", \"type\": \"Int64\", \"effective\": { \"from\": \"2019-05-08T00:00:00+08:00\", \"to\": \"2035-05-08T00:00:00+08:00\" }, \"activeAt\": [] }"
         var parameter = Parameter.fromString(json)
         Assert.assertTrue(parameter.value == "2")
-    }
-
-    @Test
-    fun passenger(){
-
-    }
-
-    @Test
-    fun qrCode(){
-
-    }
-
-    @Test
-    fun qrFinancial(){
-
     }
 
     @Test
@@ -165,23 +108,43 @@ class DataObjectsParseTest {
     }
 
     @Test
-    fun sums(){
-
-    }
-
-    @Test
     fun timeBasedFeeTable(){
-
+        //NO DATA
     }
 
     @Test
     fun timeInterval(){
-
-    }
-
-    @Test
-    fun transaction(){
-
+        val json = "{\n" +
+                "                        \"at\": [\n" +
+                "                            true,\n" +
+                "                            true,\n" +
+                "                            true,\n" +
+                "                            true,\n" +
+                "                            true,\n" +
+                "                            true,\n" +
+                "                            true,\n" +
+                "                            true,\n" +
+                "                            true,\n" +
+                "                            true,\n" +
+                "                            true,\n" +
+                "                            true,\n" +
+                "                            true,\n" +
+                "                            true,\n" +
+                "                            true,\n" +
+                "                            true,\n" +
+                "                            true,\n" +
+                "                            true,\n" +
+                "                            true,\n" +
+                "                            true,\n" +
+                "                            true,\n" +
+                "                            true,\n" +
+                "                            true,\n" +
+                "                            true\n" +
+                "                        ],\n" +
+                "                        \"on\": null\n" +
+                "                    }"
+        var timeInterval = TimeInterval.fromString(json)
+        Assert.assertTrue(timeInterval.at!![0])
     }
 
     @Test
