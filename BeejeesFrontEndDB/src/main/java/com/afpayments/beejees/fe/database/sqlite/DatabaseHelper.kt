@@ -12,7 +12,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DB_DIR + File
 
     companion object{
         const val DB_NAME = "beejeesFrontEnd.db"
-        const val DB_VERSION = 2
+        const val DB_VERSION = 1
         val DB_DIR = Environment.getExternalStorageDirectory().absolutePath + "/beejees"
     }
 
