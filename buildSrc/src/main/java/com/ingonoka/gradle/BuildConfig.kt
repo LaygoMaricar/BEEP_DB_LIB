@@ -20,10 +20,10 @@ object BuildConfig {
     var isDebug = true
 
     @JvmStatic
-    var isSnapshot = false
+    var isSnapshot = true
 
     @JvmStatic
-    var group: String = "com.ingonoka"
+    var group: String = "com.afpayments.beejees"
 
     @JvmStatic
     val artifactoryRepoKey: String
@@ -36,7 +36,7 @@ object BuildConfig {
      */
     @JvmStatic
     val shortVersionName
-        get() = runSystemCmd("git describe --abbrev=0")
+        get() = runSystemCmd("git describe --tag")
 
     /**
      * Get a ong version name that can have two forms:
