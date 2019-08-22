@@ -48,7 +48,7 @@ object BuildConfig {
      */
     @JvmStatic
     val longVersionName
-        get() = runSystemCmd("git describe")
+        get() = runSystemCmd("git describe --tags")
 
     /**
      * Snapshots get a version name that does not change with new commits, so that users
