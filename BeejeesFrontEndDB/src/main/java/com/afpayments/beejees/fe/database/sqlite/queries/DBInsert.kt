@@ -16,19 +16,22 @@ class DBInsert {
             db.insertWithOnConflict(BlacklistTable.TABLE_NAME,null, value,SQLiteDatabase.CONFLICT_REPLACE)
         }
 
-        fun transaction(db : SQLiteDatabase, transaction : String, transactionType : String){
+        fun transaction(db : SQLiteDatabase, mtc : Long, transaction : String, transactionType : String){
             val value = ContentValues()
 
+            value.put(TransactionsTable.MTC,mtc)
             value.put(TransactionsTable.TRANSACTION_DATA,transaction)
             value.put(TransactionsTable.TRANSACTION_TYPE,transactionType)
 
             db.insertWithOnConflict(TransactionsTable.TABLE_NAME,null,value,SQLiteDatabase.CONFLICT_REPLACE)
         }
 
-        fun cardTransaction(db : SQLiteDatabase, transaction : String){
+        fun cardTransaction(db : SQLiteDatabase,mtc : Long, transaction : String, dateInserted: String){
             val value = ContentValues()
 
+            value.put(CardTransactionsTable.MTC,mtc)
             value.put(CardTransactionsTable.TRANSACTION_DATA,transaction)
+            value.put(CardTransactionsTable.DATE_INSERTED,dateInserted)
 
             db.insertWithOnConflict(CardTransactionsTable.TABLE_NAME,null,value,SQLiteDatabase.CONFLICT_REPLACE)
         }
@@ -55,6 +58,22 @@ class DBInsert {
             value.put(UsersTable.CARD_EFFECTIVE,cardEffective)
 
             db.insertWithOnConflict(UsersTable.TABLE_NAME,null,value,SQLiteDatabase.CONFLICT_REPLACE)
+        }
+
+        fun user(db : SQLiteDatabase, user : User){
+            for(i in 0..user.idCards!!.size - 1) {
+                user(
+                    db,
+                    user.id!!,
+                    user.companyId!!,
+                    user.shortName!!,
+                    user.longName!!,
+                    user.idCards!![i].uid!!,
+                    user.idCards!![i].role!!,
+                    user.effective!!.toString(),
+                    user.idCards!![i].effective!!.toString()
+                )
+            }
         }
 
         fun vehicle(db : SQLiteDatabase, data : String){
