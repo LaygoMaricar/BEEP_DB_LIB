@@ -23,6 +23,20 @@ class DBRead {
             return null
         }
 
+        fun parameter(db: SQLiteDatabase): ArrayList<Parameter>? {
+            val cursor = db.rawQuery(SQLQueryHelper.selectAll(ParameterTable.TABLE_NAME), null)
+
+            if (cursor.count > 0) {
+                var parameter = ArrayList<Parameter>()
+                while (cursor.moveToNext()) {
+                    parameter.add(Parameter.fromString(cursor.getString(ParameterTable.DATA_COL)))
+                }
+                cursor.close()
+                return parameter
+            }
+            return null
+        }
+
         fun cardTransactions(db: SQLiteDatabase, lastUpload: Long, limit: Long): ArrayList<String>? {
             val cursor = db.rawQuery(
                 SQLQueryHelper.selectWhereLimit(
@@ -279,7 +293,7 @@ class DBRead {
 
         fun user(db: SQLiteDatabase, uid: String): User? {
             val cursor = db.rawQuery(
-                SQLQueryHelper.selectWhere(UsersTable.TABLE_NAME, UsersTable.UID, "=", uid)
+                SQLQueryHelper.selectWhere(UsersTable.TABLE_NAME, UsersTable.UID, "=", uid.toUpperCase())
                 , null
             )
 
