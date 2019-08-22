@@ -23,5 +23,6 @@ class QueryCreate {
         const val STOP_BASED_FARE_TABLE = "CREATE TABLE IF NOT EXISTS  `${StopBasedFaresTable.TABLE_NAME}` ( `${StopBasedFaresTable.ID}` INTEGER NOT NULL UNIQUE, `${StopBasedFaresTable.DATA}` TEXT, PRIMARY KEY(`${StopBasedFaresTable.ID}`) )"
         const val STOPS_TABLE = "CREATE TABLE IF NOT EXISTS  `${StopTable.TABLE_NAME}` ( `${StopTable.ID}` INTEGER NOT NULL, `${StopTable.ROUTE_ID}` INTEGER NOT NULL, `${StopTable.DATA}` TEXT, PRIMARY KEY(`${StopTable.ID}`),unique(`${StopTable.ID}`,`${StopTable.ROUTE_ID}`) )"
         const val TIME_BASED_FARE_TABLE = "CREATE TABLE IF NOT EXISTS  `${TimeBasedFaresTable.TABLE_NAME}` ( `${TimeBasedFaresTable.ID}` INTEGER NOT NULL UNIQUE, `${TimeBasedFaresTable.DATA}` TEXT, PRIMARY KEY(`${TimeBasedFaresTable.ID}`) )"
+        const val PRINT_TEMPLATE_TABLE = "CREATE TABLE `${PrintTemplatesTable.TABLE_NAME}` ( `${PrintTemplatesTable.ID}` INTEGER UNIQUE, `${PrintTemplatesTable.DATA}` TEXT, PRIMARY KEY(`${PrintTemplatesTable.ID}`) )"
     }
 }

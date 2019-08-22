@@ -352,5 +352,11 @@ class DBRead {
             return 0
         }
 
+        fun printTemplate(db: SQLiteDatabase, id: Long) : PrintTemplate?{
+            //TODO printTemplate
+            return null
+
+        }
+
     }
 }
