@@ -1,1 +1,1 @@
-include ':app', ':buildSrc', ':BeejeesFrontEndDB'
+include ':app', ':buildSrc', ':database'

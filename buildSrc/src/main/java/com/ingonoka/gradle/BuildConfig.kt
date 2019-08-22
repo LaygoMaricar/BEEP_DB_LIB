@@ -20,7 +20,7 @@ object BuildConfig {
     var isDebug = true
 
     @JvmStatic
-    var isSnapshot = true
+    var isSnapshot = false
 
     @JvmStatic
     var group: String = "com.afpayments.beejees"
