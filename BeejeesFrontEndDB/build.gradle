@@ -1,7 +1,42 @@
+import com.ingonoka.gradle.BuildConfig
+
+buildscript {
+
+    ext {
+        // Artifactory Gradle Plugin Version
+        // see https://bintray.com/jfrog/jfrog-jars/build-info-extractor-gradle for latest version
+        artifactory_version = '4.9.1'
+    }
+
+    repositories {
+        jcenter()
+        google()
+        maven { url "https://kotlin.bintray.com/kotlinx" }
+        mavenLocal()
+
+    }
+
+    dependencies {
+        // Kotlin multi platform serialization
+        classpath "org.jetbrains.kotlin:kotlin-serialization:$kotlin_version"
+
+        // Artifactory Upload
+        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:$artifactory_version"
+    }
+
+    //println(BuildConfig.describe())
+
+}
+
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: "maven-publish"
+apply plugin: 'com.jfrog.artifactory'
 apply plugin: 'kotlinx-serialization'
+
+version = BuildConfig.versionName()
+group = BuildConfig.group
 
 android {
     compileSdkVersion 28
@@ -55,4 +90,52 @@ dependencies {
 }
 repositories {
     mavenCentral()
+}
+project.afterEvaluate {
+    publishing {
+        publications {
+            mavenKotlin(MavenPublication) {
+
+                artifact bundleDebugAar
+
+                groupId group
+                version = version
+            }
+        }
+    }
+}
+
+artifactory {
+    contextUrl = 'http://209.97.175.64:8081/artifactory'
+
+    publish {
+        repository {
+            repoKey = BuildConfig.artifactoryRepoKey
+            username = "${artifactory_username}"
+            password = "${artifactory_password}"
+            maven = true
+
+
+        }
+        defaults {
+
+            publications('mavenKotlin')
+
+            publishBuildInfo = true   //Publish build-info to Artifactory (true by default)
+            publishArtifacts = true   //Publish artifacts to Artifactory (true by default)
+            publishPom = true   //Publish generated POM files to Artifactory (true by default).
+            publishIvy = false   //Publish generated Ivy descriptor files to Artifactory (true by default).
+        }
+
+    }
+
+    resolve {
+        repository {
+            repoKey = BuildConfig.artifactoryRepoKey
+            username = "${artifactory_username}"
+            password = "${artifactory_password}"
+            maven = true
+
+        }
+    }
 }
