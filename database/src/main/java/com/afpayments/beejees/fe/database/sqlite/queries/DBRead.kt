@@ -113,10 +113,45 @@ class DBRead {
             return null
         }
 
+        fun transactions(db: SQLiteDatabase, startShift : String, endShift : String): ArrayList<String>? {
+            val cursor = db.rawQuery(
+                String.format("SELECT * FROM %s WHERE %s >= '%s' AND %s <= '%s'", TransactionsTable.TABLE_NAME, TransactionsTable.DATE_INSERTED,startShift,TransactionsTable.DATE_INSERTED,endShift)
+                ,null)
+
+            if (cursor.count > 0) {
+                var transactions = ArrayList<String>()
+                while (cursor.moveToNext()) {
+                    transactions.add(cursor.getString(TransactionsTable.TRANSACTION_DATA_COL))
+                }
+                cursor.close()
+                return transactions
+            }
+            return null
+        }
+
         fun reports(db: SQLiteDatabase, lastUpload: Long, limit: Long): ArrayList<String>? {
             val cursor = db.rawQuery(
                 SQLQueryHelper.selectWhereLimit(
                     UserLogsTable.TABLE_NAME, UserLogsTable.MTC, ">", lastUpload, limit
+                )
+                , null
+            )
+
+            if (cursor.count > 0) {
+                var reports = ArrayList<String>()
+                while (cursor.moveToNext()) {
+                    reports.add(cursor.getString(UserLogsTable.REPORT_DATA_COL))
+                }
+                cursor.close()
+                return reports
+            }
+            return null
+        }
+
+        fun reports(db: SQLiteDatabase, lastUpload: Long): ArrayList<String>? {
+            val cursor = db.rawQuery(
+                SQLQueryHelper.selectWhere(
+                    UserLogsTable.TABLE_NAME, UserLogsTable.MTC, ">", lastUpload
                 )
                 , null
             )
@@ -373,6 +408,25 @@ class DBRead {
             val cursor = db.rawQuery(
                 SQLQueryHelper.selectWhereLimit(
                     CashboxReportsTable.TABLE_NAME, CashboxReportsTable.MTC, ">", lastUpload, limit
+                )
+                , null
+            )
+
+            if (cursor.count > 0) {
+                var reports = ArrayList<String>()
+                while (cursor.moveToNext()) {
+                    reports.add(cursor.getString(CashboxReportsTable.REPORT_DATA_COL))
+                }
+                cursor.close()
+                return reports
+            }
+            return null
+        }
+
+        fun cashboxReport(db: SQLiteDatabase, lastUpload: Long): ArrayList<String>? {
+            val cursor = db.rawQuery(
+                SQLQueryHelper.selectWhere(
+                    CashboxReportsTable.TABLE_NAME, CashboxReportsTable.MTC, ">", lastUpload
                 )
                 , null
             )
