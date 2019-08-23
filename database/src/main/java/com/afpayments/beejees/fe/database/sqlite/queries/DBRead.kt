@@ -404,6 +404,23 @@ class DBRead {
             return null
         }
 
+        fun printTemplate(db: SQLiteDatabase, type: String) : PrintTemplate?{
+            val cursor = db.rawQuery(
+                SQLQueryHelper.selectWhere(PrintTemplatesTable.TABLE_NAME, PrintTemplatesTable.TYPE, "=", type)
+                , null
+            )
+
+            if (cursor.count > 0) {
+                var ret = PrintTemplate()
+                while (cursor.moveToNext()) {
+                    ret = PrintTemplate.fromString(cursor.getString(PrintTemplatesTable.DATA_COL))
+                }
+                cursor.close()
+                return ret
+            }
+            return null
+        }
+
         fun cashboxReport(db: SQLiteDatabase, lastUpload: Long, limit: Long): ArrayList<String>? {
             val cursor = db.rawQuery(
                 SQLQueryHelper.selectWhereLimit(
