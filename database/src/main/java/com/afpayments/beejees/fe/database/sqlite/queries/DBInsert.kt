@@ -199,7 +199,13 @@ class DBInsert {
         }
 
         fun printTemplate(db : SQLiteDatabase, id: Long, data : String){
-            //TODO printTemplate
+            val value = ContentValues()
+
+            value.put(PrintTemplatesTable.ID,id)
+            value.put(PrintTemplatesTable.DATA,data)
+
+            db.insertWithOnConflict(PrintTemplatesTable.TABLE_NAME,null,value,SQLiteDatabase.CONFLICT_REPLACE)
+
         }
     }
 }

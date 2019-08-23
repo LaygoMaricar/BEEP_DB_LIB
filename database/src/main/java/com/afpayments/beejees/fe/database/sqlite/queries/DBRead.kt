@@ -353,9 +353,20 @@ class DBRead {
         }
 
         fun printTemplate(db: SQLiteDatabase, id: Long) : PrintTemplate?{
-            //TODO printTemplate
-            return null
+            val cursor = db.rawQuery(
+                SQLQueryHelper.selectWhere(PrintTemplatesTable.TABLE_NAME, PrintTemplatesTable.ID, "=", id)
+                , null
+            )
 
+            if (cursor.count > 0) {
+                var ret = PrintTemplate()
+                while (cursor.moveToNext()) {
+                    ret = PrintTemplate.fromString(cursor.getString(PrintTemplatesTable.DATA_COL))
+                }
+                cursor.close()
+                return ret
+            }
+            return null
         }
 
     }
