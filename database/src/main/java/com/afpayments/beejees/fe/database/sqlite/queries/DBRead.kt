@@ -369,5 +369,24 @@ class DBRead {
             return null
         }
 
+        fun cashboxReport(db: SQLiteDatabase, lastUpload: Long, limit: Long): ArrayList<String>? {
+            val cursor = db.rawQuery(
+                SQLQueryHelper.selectWhereLimit(
+                    CashboxReportsTable.TABLE_NAME, CashboxReportsTable.MTC, ">", lastUpload, limit
+                )
+                , null
+            )
+
+            if (cursor.count > 0) {
+                var reports = ArrayList<String>()
+                while (cursor.moveToNext()) {
+                    reports.add(cursor.getString(CashboxReportsTable.REPORT_DATA_COL))
+                }
+                cursor.close()
+                return reports
+            }
+            return null
+        }
+
     }
 }

@@ -45,6 +45,15 @@ class DBInsert {
             db.insertWithOnConflict(UserLogsTable.TABLE_NAME,null,value,SQLiteDatabase.CONFLICT_REPLACE)
         }
 
+        fun cashboxReport(db : SQLiteDatabase, reportData : String, dateInserted : String){
+            val value = ContentValues()
+
+            value.put(CashboxReportsTable.REPORT_DATA,reportData)
+            value.put(CashboxReportsTable.DATE_INSERTED,dateInserted)
+
+            db.insertWithOnConflict(CashboxReportsTable.TABLE_NAME,null,value,SQLiteDatabase.CONFLICT_REPLACE)
+        }
+
         fun user(db: SQLiteDatabase, id : Long, companyId : String, shortName : String, longName : String, uid : String, role : String, userEffective : String, cardEffective : String){
             val value = ContentValues()
 
@@ -61,7 +70,7 @@ class DBInsert {
         }
 
         fun user(db : SQLiteDatabase, user : User){
-            for(i in 0..user.idCards!!.size - 1) {
+            for(i in 0 until user.idCards!!.size) {
                 user(
                     db,
                     user.id!!,
