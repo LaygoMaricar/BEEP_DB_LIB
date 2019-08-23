@@ -16,12 +16,13 @@ class DBInsert {
             return db.insertWithOnConflict(BlacklistTable.TABLE_NAME,null, value,SQLiteDatabase.CONFLICT_REPLACE)
         }
 
-        fun transaction(db : SQLiteDatabase, mtc : Long, transaction : String, transactionType : String) : Long{
+        fun transaction(db : SQLiteDatabase, mtc : Long, transaction : String, transactionType : String, dateInserted: String) : Long{
             val value = ContentValues()
 
             value.put(TransactionsTable.MTC,mtc)
             value.put(TransactionsTable.TRANSACTION_DATA,transaction)
             value.put(TransactionsTable.TRANSACTION_TYPE,transactionType)
+            value.put(TransactionsTable.DATE_INSERTED,dateInserted)
 
             return db.insertWithOnConflict(TransactionsTable.TABLE_NAME,null,value,SQLiteDatabase.CONFLICT_REPLACE)
         }

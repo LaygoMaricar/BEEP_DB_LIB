@@ -153,7 +153,7 @@ class DatabaseReadSaveTest {
 
     @Test
     fun insertTransaction(){
-        DBInsert.transaction(model.getDatabase(),1,"transaction","non-fin")
+        DBInsert.transaction(model.getDatabase(),1,"transaction","non-fin","today")
         var result = DBRead.transactions(model.getDatabase(),0)
         DBDelete.deleteRecords(model.getDatabase(),TransactionsTable.TABLE_NAME)
 
