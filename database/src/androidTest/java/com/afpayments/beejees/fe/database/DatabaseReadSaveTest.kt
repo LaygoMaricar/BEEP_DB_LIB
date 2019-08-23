@@ -210,7 +210,17 @@ class DatabaseReadSaveTest {
         var printTemplate = PrintTemplate.fromString(json)
         DBInsert.printTemplate(model.getDatabase(),printTemplate.id!!,printTemplate.toString())
         var result = DBRead.printTemplate(model.getDatabase(),1L)
+        DBDelete.deleteRecords(model.getDatabase(),PrintTemplatesTable.TABLE_NAME)
         Assert.assertTrue(printTemplate.id == 1L)
 
+    }
+
+    @Test
+    fun cashboxReport(){
+        DBInsert.cashboxReport(model.getDatabase(),"cashbox","today")
+        var result = DBRead.cashboxReport(model.getDatabase(),0,1L)
+        DBDelete.deleteRecords(model.getDatabase(),UserLogsTable.TABLE_NAME)
+
+        Assert.assertTrue(result!![0] == "cashbox")
     }
 }
