@@ -197,5 +197,15 @@ class DBInsert {
             db.insertWithOnConflict(TimeBasedFaresTable.TABLE_NAME,null,value,SQLiteDatabase.CONFLICT_REPLACE)
 
         }
+
+        fun printTemplate(db : SQLiteDatabase, id: Long, data : String){
+            val value = ContentValues()
+
+            value.put(PrintTemplatesTable.ID,id)
+            value.put(PrintTemplatesTable.DATA,data)
+
+            db.insertWithOnConflict(PrintTemplatesTable.TABLE_NAME,null,value,SQLiteDatabase.CONFLICT_REPLACE)
+
+        }
     }
 }

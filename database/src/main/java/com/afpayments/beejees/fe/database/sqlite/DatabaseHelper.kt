@@ -39,6 +39,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DB_DIR + File
             p0.execSQL(QueryCreate.STOP_BASED_FARE_TABLE)
             p0.execSQL(QueryCreate.STOPS_TABLE)
             p0.execSQL(QueryCreate.TIME_BASED_FARE_TABLE)
+            p0.execSQL(QueryCreate.PRINT_TEMPLATE_TABLE)
         }
     }
 
