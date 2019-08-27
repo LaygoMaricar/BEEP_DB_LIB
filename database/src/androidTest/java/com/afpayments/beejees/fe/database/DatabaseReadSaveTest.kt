@@ -205,11 +205,22 @@ class DatabaseReadSaveTest {
     }
 
     @Test
-    fun printTemplate(){
+    fun printTemplateId(){
         val json = "{ \"id\": 1, \"templateType\": \"END_OF_SHIFT_REPORT\", \"templateName\": \"PATEROS_END_OF_SHIFT\", \"template\": [ \"T|^|=|=|Cashier End Of Shift Report\", \"LF|CENTER\", \"T|<|=|=|Start\", \"V|>|=|=|driverShiftStart|YY-MM-dd HH:mm:ss\", \"LF|CENTER\", \"T|<|=|=|End\", \"V|>|=|=|dateNow|YY-MM-dd HH:mm:ss\", \"LF|CENTER\", \"T|<|=|=|Operator\", \"V|>|=|=|participantShortName|..20\", \"LF|CENTER\", \"T|<|=|=|Terminal\", \"V|>|=|=|terminalId|..20\", \"LF|CENTER\", \"T|<|=|=|Cashier\", \"V|>|=|=|driverId|..20\", \"LF|CENTER\", \"T|<|=|=|Route\", \"V|>|=|=|routeNames|..20\", \"LF|CENTER\", \"T|<|=|=|MTC Start\", \"V|>|=|=|oldMtc|..20\", \"LF|CENTER\", \"T|<|=|=|MTC End\", \"V|>|=|=|mtc|..20\", \"LF|CENTER\", \"LF|CENTER\", \"T|<|=|=|AYALA_U Total\", \"V|>|=|=|routeTotal.AYALA_U.amount|PHP%5.2f\", \"LF|CENTER\", \"T|<|=|=|Cash Total\", \"V|>|=|=|totalRegular|PHP%5.2f\", \"LF|CENTER\", \"T|<|=|=|Cash Discount Total\", \"V|>|=|=|totalDiscount|PHP%5.2f\", \"LF|CENTER\", \"T|<|=|=|beep Total\", \"V|>|=|=|totalBeep|PHP%5.2f\", \"LF|CENTER\", \"LF|CENTER\", \"T|<|=|=|Total\", \"V|>|=|=|totalAmount|PHP%5.2f\", \"LF\", \"LF\", \"LF\", \"LF\", \"CUT|PARTIAL\" ], \"effective\": { \"from\": \"2019-01-01T00:00:00+08:00\", \"to\": \"2022-01-01T00:00:00+08:00\" } }"
         var printTemplate = PrintTemplate.fromString(json)
-        DBInsert.printTemplate(model.getDatabase(),printTemplate.id!!,printTemplate.toString())
+        DBInsert.printTemplate(model.getDatabase(),printTemplate.id!!,printTemplate.toString(),printTemplate.templateType!!)
         var result = DBRead.printTemplate(model.getDatabase(),1L)
+        DBDelete.deleteRecords(model.getDatabase(),PrintTemplatesTable.TABLE_NAME)
+        Assert.assertTrue(printTemplate.id == 1L)
+
+    }
+
+    @Test
+    fun printTemplateType(){
+        val json = "{ \"id\": 1, \"templateType\": \"END_OF_SHIFT_REPORT\", \"templateName\": \"PATEROS_END_OF_SHIFT\", \"template\": [ \"T|^|=|=|Cashier End Of Shift Report\", \"LF|CENTER\", \"T|<|=|=|Start\", \"V|>|=|=|driverShiftStart|YY-MM-dd HH:mm:ss\", \"LF|CENTER\", \"T|<|=|=|End\", \"V|>|=|=|dateNow|YY-MM-dd HH:mm:ss\", \"LF|CENTER\", \"T|<|=|=|Operator\", \"V|>|=|=|participantShortName|..20\", \"LF|CENTER\", \"T|<|=|=|Terminal\", \"V|>|=|=|terminalId|..20\", \"LF|CENTER\", \"T|<|=|=|Cashier\", \"V|>|=|=|driverId|..20\", \"LF|CENTER\", \"T|<|=|=|Route\", \"V|>|=|=|routeNames|..20\", \"LF|CENTER\", \"T|<|=|=|MTC Start\", \"V|>|=|=|oldMtc|..20\", \"LF|CENTER\", \"T|<|=|=|MTC End\", \"V|>|=|=|mtc|..20\", \"LF|CENTER\", \"LF|CENTER\", \"T|<|=|=|AYALA_U Total\", \"V|>|=|=|routeTotal.AYALA_U.amount|PHP%5.2f\", \"LF|CENTER\", \"T|<|=|=|Cash Total\", \"V|>|=|=|totalRegular|PHP%5.2f\", \"LF|CENTER\", \"T|<|=|=|Cash Discount Total\", \"V|>|=|=|totalDiscount|PHP%5.2f\", \"LF|CENTER\", \"T|<|=|=|beep Total\", \"V|>|=|=|totalBeep|PHP%5.2f\", \"LF|CENTER\", \"LF|CENTER\", \"T|<|=|=|Total\", \"V|>|=|=|totalAmount|PHP%5.2f\", \"LF\", \"LF\", \"LF\", \"LF\", \"CUT|PARTIAL\" ], \"effective\": { \"from\": \"2019-01-01T00:00:00+08:00\", \"to\": \"2022-01-01T00:00:00+08:00\" } }"
+        var printTemplate = PrintTemplate.fromString(json)
+        DBInsert.printTemplate(model.getDatabase(),printTemplate.id!!,printTemplate.toString(),printTemplate.templateType!!)
+        var result = DBRead.printTemplate(model.getDatabase(),"END_OF_SHIFT_REPORT")
         DBDelete.deleteRecords(model.getDatabase(),PrintTemplatesTable.TABLE_NAME)
         Assert.assertTrue(printTemplate.id == 1L)
 

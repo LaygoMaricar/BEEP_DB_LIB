@@ -208,11 +208,12 @@ class DBInsert {
 
         }
 
-        fun printTemplate(db : SQLiteDatabase, id: Long, data : String) : Long{
+        fun printTemplate(db : SQLiteDatabase, id: Long, data : String, type : String) : Long{
             val value = ContentValues()
 
             value.put(PrintTemplatesTable.ID,id)
             value.put(PrintTemplatesTable.DATA,data)
+            value.put(PrintTemplatesTable.TYPE,type)
 
             return db.insertWithOnConflict(PrintTemplatesTable.TABLE_NAME,null,value,SQLiteDatabase.CONFLICT_REPLACE)
 
