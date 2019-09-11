@@ -51,10 +51,10 @@ class StopBasedFareTable {
                 val array = JSONArray(jsonString)
                 var fares = Fares()
                 fares.list = ArrayList()
-                for (x in 0..array.length()){
+                for (x in 0 until array.length()){
                     var subArray = array.getJSONArray(x)
                     var subList = ArrayList<Long>()
-                    for(y in 0..subArray.length()){
+                    for(y in 0 until subArray.length()){
                         subList.add(subArray.getLong(y))
                     }
                     fares.list!!.add(subList)
