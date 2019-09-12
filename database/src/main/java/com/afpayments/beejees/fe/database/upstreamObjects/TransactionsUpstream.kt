@@ -10,6 +10,8 @@ import okhttp3.RequestBody
 class TransactionsUpstream {
     var transactions : ArrayList<Transaction>? = null
 
+    constructor()
+
     constructor(transactions: ArrayList<Transaction>){
         this.transactions = transactions
     }

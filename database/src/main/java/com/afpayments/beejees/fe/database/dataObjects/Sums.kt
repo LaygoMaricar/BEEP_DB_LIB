@@ -8,6 +8,8 @@ class Sums {
     var total : Total? = null
     var subTotals : ArrayList<Item>? = null
 
+    constructor()
+
     constructor(total : Total, items : ArrayList<Item>){
         this.total = total
         this.subTotals = items

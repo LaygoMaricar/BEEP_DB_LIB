@@ -8,6 +8,8 @@ class Total{
     var amount : Long? = null
     var count : Long? = null
 
+    constructor()
+
     constructor(amount: Long, count: Long) {
         this.amount = amount
         this.count = count

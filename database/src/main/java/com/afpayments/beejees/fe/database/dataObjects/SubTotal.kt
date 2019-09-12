@@ -16,6 +16,8 @@ class SubTotal{
         }
     }
 
+    constructor()
+
     constructor(type : String){
         this.type = type
     }

@@ -10,6 +10,8 @@ import okhttp3.RequestBody
 class HeartbeatUpstream {
     var heartbeat : Heartbeat? = null
 
+    constructor()
+
     constructor(heartbeat : Heartbeat){
         this.heartbeat = heartbeat
     }

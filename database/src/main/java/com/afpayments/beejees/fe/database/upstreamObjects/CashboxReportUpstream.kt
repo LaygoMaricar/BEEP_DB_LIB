@@ -10,6 +10,8 @@ import okhttp3.RequestBody
 class CashboxReportUpstream {
     var cashboxReport: CashboxReport? = null
 
+    constructor()
+
     constructor(cashboxReport: CashboxReport) {
         this.cashboxReport = cashboxReport
     }

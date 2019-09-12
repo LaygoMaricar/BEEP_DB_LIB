@@ -10,6 +10,8 @@ import okhttp3.RequestBody
 class EndShiftReportUpstream {
     var reportRecords : EndOfShiftReport? = null
 
+    constructor()
+
     constructor(reportRecords : EndOfShiftReport){
         this.reportRecords = reportRecords
     }
