@@ -14,6 +14,12 @@ class IdCards {
     }
 
     companion object{
+        const val DRIVER = "driver"
+        const val DISPATCHER = "dispatcher"
+        const val ADMIN = "admin"
+        const val CASH_COLLECTOR = "cash-collector"
+        const val SUPER = "super"
+
         fun fromString(jsonString: String): IdCards {
             return Json.parse(serializer(), jsonString)
         }

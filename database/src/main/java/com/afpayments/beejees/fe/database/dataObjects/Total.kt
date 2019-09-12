@@ -4,15 +4,15 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 
 @Serializable
-class Sums {
-    var total : Total? = null
-    var subTotals : ArrayList<Item>? = null
+class Total{
+    var amount : Long? = null
+    var count : Long? = null
 
     constructor()
 
-    constructor(total : Total, items : ArrayList<Item>){
-        this.total = total
-        this.subTotals = items
+    constructor(amount: Long, count: Long) {
+        this.amount = amount
+        this.count = count
     }
 
     override fun toString(): String {
@@ -20,14 +20,8 @@ class Sums {
     }
 
     companion object{
-        fun fromString(jsonString: String): Sums {
+        fun fromString(jsonString: String): Total {
             return Json.parse(serializer(), jsonString)
         }
     }
-
-
-
-
-
-
 }
