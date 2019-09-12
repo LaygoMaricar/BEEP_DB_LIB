@@ -75,6 +75,7 @@ dependencies {
 
     implementation 'com.jakewharton.timber:timber:4.7.1'
 
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
 
     implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.11.1"
 
