@@ -18,8 +18,9 @@ class SubTotal{
 
     constructor()
 
-    constructor(type : String){
+    constructor(typeId : Long, type : String){
         this.type = type
+        this.typeId = typeId
     }
 
     fun addCount(count : Long){
@@ -35,6 +36,7 @@ class SubTotal{
     }
 
     var type : String? = null
+    var typeId : Long? = null
     var amount : Long? = 0L
     var count : Long? = 0L
 }

@@ -15,6 +15,14 @@ class Item {
         }
     }
 
+    constructor()
+
+    constructor(type : String, total : Total, subTotals : ArrayList<SubTotal>){
+        this.total = total
+        this.subTotals = subTotals
+        this.type = type
+    }
+
     override fun toString(): String {
         return Json.stringify(serializer(), this)
     }

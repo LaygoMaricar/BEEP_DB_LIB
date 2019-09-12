@@ -20,8 +20,18 @@ class Passenger{
         return Json.nonstrict.stringify(serializer(),this)
     }
 
+    constructor()
+
+    constructor(count : Long, amount : Long, profile : String, profileId : Long){
+        this.count = count
+        this.amount = amount
+        this.profile = profile
+        this.profileId = profileId
+    }
+
 
     var count : Long? = null
     var amount : Long? = null
     var profile : String? = null
+    var profileId : Long? = null
 }
