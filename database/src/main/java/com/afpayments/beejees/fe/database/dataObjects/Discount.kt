@@ -9,6 +9,7 @@ class Discount {
         const val UP = "up"
         const val DOWN = "down"
         const val NEAREST = "nearest"
+        const val EXACT = "exact"
 
         fun fromString(jsonString: String): Discount {
             return Json.parse(serializer(), jsonString)
