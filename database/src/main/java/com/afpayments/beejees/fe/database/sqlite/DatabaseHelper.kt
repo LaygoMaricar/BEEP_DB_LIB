@@ -1,5 +1,6 @@
 package com.afpayments.beejees.fe.database.sqlite
 
+import afpayments.beepStorage.BeepStorage
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
@@ -13,7 +14,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DB_DIR + File
     companion object{
         const val DB_NAME = "beejeesFrontEnd.db"
         const val DB_VERSION = 1
-        val DB_DIR = Environment.getExternalStorageDirectory().absolutePath + "/beejees"
+        val DB_DIR = BeepStorage.BEEP_FOLDER
     }
 
     init {
