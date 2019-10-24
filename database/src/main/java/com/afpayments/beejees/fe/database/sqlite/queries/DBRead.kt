@@ -1,11 +1,13 @@
 package com.afpayments.beejees.fe.database.sqlite.queries
 
 import android.database.Cursor
+import android.database.SQLException
 import android.database.sqlite.SQLiteDatabase
 import com.afpayments.beejees.fe.database.dataObjects.*
 import com.afpayments.beejees.fe.database.sqlite.tables.*
 import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter
+import timber.log.Timber
 
 class DBRead {
     companion object {
@@ -457,6 +459,24 @@ class DBRead {
                 return reports
             }
             return null
+        }
+
+        fun sqliteSequence(db: SQLiteDatabase, tableName: String): Int {
+            var lastIndex = 0
+            val cursor = db.rawQuery(
+                "select seq from sqlite_sequence where name='$tableName'",
+                null
+            )
+
+            if (cursor.count > 0) {
+                while (cursor.moveToNext()) {
+                    lastIndex = cursor.getInt(0)
+                }
+            }
+
+            cursor.close()
+            return lastIndex;
+
         }
 
     }

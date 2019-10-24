@@ -218,5 +218,18 @@ class DBInsert {
             return db.insertWithOnConflict(PrintTemplatesTable.TABLE_NAME,null,value,SQLiteDatabase.CONFLICT_REPLACE)
 
         }
+
+        fun sqliteSequence(db : SQLiteDatabase, tableName: String, index : Int) : Long {
+            val values = ContentValues()
+            values.put("seq", index)
+            values.put("name", tableName)
+
+            return db.insertWithOnConflict(
+                "SQLITE_SEQUENCE",
+                null,
+                values,
+                SQLiteDatabase.CONFLICT_REPLACE
+            )
+        }
     }
 }
