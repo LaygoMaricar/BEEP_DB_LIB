@@ -234,4 +234,13 @@ class DatabaseReadSaveTest {
 
         Assert.assertTrue(result!![0] == "cashbox")
     }
+
+    @Test
+    fun sqlite_sequence(){
+        DBInsert.sqliteSequence(model.getDatabase(),"tablename",1234)
+        var result = DBRead.sqliteSequence(model.getDatabase(),"tablename")
+        DBDelete.deleteRecords(model.getDatabase(),"sqlite_sequence")
+
+        Assert.assertTrue(result!! == 1234)
+    }
 }

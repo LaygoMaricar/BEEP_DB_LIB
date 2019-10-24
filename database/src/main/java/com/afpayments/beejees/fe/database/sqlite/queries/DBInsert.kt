@@ -37,6 +37,25 @@ class DBInsert {
             return db.insertWithOnConflict(CardTransactionsTable.TABLE_NAME,null,value,SQLiteDatabase.CONFLICT_REPLACE)
         }
 
+        fun transaction(db : SQLiteDatabase, transaction : String, transactionType : String, dateInserted: String) : Long{
+            val value = ContentValues()
+
+            value.put(TransactionsTable.TRANSACTION_DATA,transaction)
+            value.put(TransactionsTable.TRANSACTION_TYPE,transactionType)
+            value.put(TransactionsTable.DATE_INSERTED,dateInserted)
+
+            return db.insertWithOnConflict(TransactionsTable.TABLE_NAME,null,value,SQLiteDatabase.CONFLICT_REPLACE)
+        }
+
+        fun cardTransaction(db : SQLiteDatabase, transaction : String, dateInserted: String) : Long{
+            val value = ContentValues()
+
+            value.put(CardTransactionsTable.TRANSACTION_DATA,transaction)
+            value.put(CardTransactionsTable.DATE_INSERTED,dateInserted)
+
+            return db.insertWithOnConflict(CardTransactionsTable.TABLE_NAME,null,value,SQLiteDatabase.CONFLICT_REPLACE)
+        }
+
         fun report(db : SQLiteDatabase, reportData : String, dateInserted : String) : Long{
             val value = ContentValues()
 
@@ -217,6 +236,19 @@ class DBInsert {
 
             return db.insertWithOnConflict(PrintTemplatesTable.TABLE_NAME,null,value,SQLiteDatabase.CONFLICT_REPLACE)
 
+        }
+
+        fun sqliteSequence(db : SQLiteDatabase, tableName: String, index : Int) : Long {
+            val values = ContentValues()
+            values.put("seq", index)
+            values.put("name", tableName)
+
+            return db.insertWithOnConflict(
+                "sqlite_sequence",
+                null,
+                values,
+                SQLiteDatabase.CONFLICT_REPLACE
+            )
         }
     }
 }
