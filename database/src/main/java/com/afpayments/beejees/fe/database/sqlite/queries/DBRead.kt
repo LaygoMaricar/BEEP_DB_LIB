@@ -1,13 +1,8 @@
 package com.afpayments.beejees.fe.database.sqlite.queries
 
-import android.database.Cursor
-import android.database.SQLException
 import android.database.sqlite.SQLiteDatabase
 import com.afpayments.beejees.fe.database.dataObjects.*
 import com.afpayments.beejees.fe.database.sqlite.tables.*
-import org.threeten.bp.LocalDate
-import org.threeten.bp.format.DateTimeFormatter
-import timber.log.Timber
 
 class DBRead {
     companion object {
@@ -40,11 +35,19 @@ class DBRead {
             return parameter
         }
 
-        fun cardTransactions(db: SQLiteDatabase, lastUpload: Long, limit: Long): ArrayList<String>? {
+        fun cardTransactions(
+            db: SQLiteDatabase,
+            lastUpload: Long,
+            limit: Long
+        ): ArrayList<String>? {
             var transactions = ArrayList<String>()
             val cursor = db.rawQuery(
                 SQLQueryHelper.selectWhereLimit(
-                    CardTransactionsTable.TABLE_NAME, CardTransactionsTable.MTC, ">", lastUpload, limit
+                    CardTransactionsTable.TABLE_NAME,
+                    CardTransactionsTable.MTC,
+                    ">",
+                    lastUpload,
+                    limit
                 )
                 , null
             )
@@ -113,11 +116,23 @@ class DBRead {
             return transactions
         }
 
-        fun transactions(db: SQLiteDatabase, startShift : String, endShift : String): ArrayList<String>? {
+        fun transactions(
+            db: SQLiteDatabase,
+            startShift: String,
+            endShift: String
+        ): ArrayList<String>? {
             var transactions = ArrayList<String>()
             val cursor = db.rawQuery(
-                String.format("SELECT * FROM %s WHERE %s >= '%s' AND %s <= '%s'", TransactionsTable.TABLE_NAME, TransactionsTable.DATE_INSERTED,startShift,TransactionsTable.DATE_INSERTED,endShift)
-                ,null)
+                String.format(
+                    "SELECT * FROM %s WHERE %s >= '%s' AND %s <= '%s'",
+                    TransactionsTable.TABLE_NAME,
+                    TransactionsTable.DATE_INSERTED,
+                    startShift,
+                    TransactionsTable.DATE_INSERTED,
+                    endShift
+                )
+                , null
+            )
 
             if (cursor.count > 0) {
                 while (cursor.moveToNext()) {
@@ -202,13 +217,19 @@ class DBRead {
         fun distanceBasedFareTable(db: SQLiteDatabase, id: Long): DistanceBasedFareTable? {
             var ret = DistanceBasedFareTable()
             val cursor = db.rawQuery(
-                SQLQueryHelper.selectWhere(DistanceBasedFaresTable.TABLE_NAME, DistanceBasedFaresTable.ID, "=", id)
+                SQLQueryHelper.selectWhere(
+                    DistanceBasedFaresTable.TABLE_NAME,
+                    DistanceBasedFaresTable.ID,
+                    "=",
+                    id
+                )
                 , null
             )
 
             if (cursor.count > 0) {
                 while (cursor.moveToNext()) {
-                    ret = DistanceBasedFareTable.fromString(cursor.getString(DistanceBasedFaresTable.DATA_COL))
+                    ret =
+                        DistanceBasedFareTable.fromString(cursor.getString(DistanceBasedFaresTable.DATA_COL))
                 }
             }
             cursor?.close()
@@ -218,13 +239,19 @@ class DBRead {
         fun fixedBasedFareTable(db: SQLiteDatabase, id: Long): FixedBasedFareTable? {
             var ret = FixedBasedFareTable()
             val cursor = db.rawQuery(
-                SQLQueryHelper.selectWhere(FixedBasedFaresTable.TABLE_NAME, FixedBasedFaresTable.ID, "=", id)
+                SQLQueryHelper.selectWhere(
+                    FixedBasedFaresTable.TABLE_NAME,
+                    FixedBasedFaresTable.ID,
+                    "=",
+                    id
+                )
                 , null
             )
 
             if (cursor.count > 0) {
                 while (cursor.moveToNext()) {
-                    ret = FixedBasedFareTable.fromString(cursor.getString(FixedBasedFaresTable.DATA_COL))
+                    ret =
+                        FixedBasedFareTable.fromString(cursor.getString(FixedBasedFaresTable.DATA_COL))
                 }
             }
             cursor?.close()
@@ -268,13 +295,19 @@ class DBRead {
         fun stopBasedFareTable(db: SQLiteDatabase, id: Long): StopBasedFareTable? {
             var ret = StopBasedFareTable()
             val cursor = db.rawQuery(
-                SQLQueryHelper.selectWhere(StopBasedFaresTable.TABLE_NAME, StopBasedFaresTable.ID, "=", id)
+                SQLQueryHelper.selectWhere(
+                    StopBasedFaresTable.TABLE_NAME,
+                    StopBasedFaresTable.ID,
+                    "=",
+                    id
+                )
                 , null
             )
 
             if (cursor.count > 0) {
                 while (cursor.moveToNext()) {
-                    ret = StopBasedFareTable.fromString(cursor.getString(StopBasedFaresTable.DATA_COL))
+                    ret =
+                        StopBasedFareTable.fromString(cursor.getString(StopBasedFaresTable.DATA_COL))
                 }
             }
             cursor?.close()
@@ -302,13 +335,19 @@ class DBRead {
         fun timeBasedFeeTable(db: SQLiteDatabase, id: Long): TimeBasedFeeTable? {
             var ret = TimeBasedFeeTable()
             val cursor = db.rawQuery(
-                SQLQueryHelper.selectWhere(TimeBasedFaresTable.TABLE_NAME, TimeBasedFaresTable.ID, "=", id)
+                SQLQueryHelper.selectWhere(
+                    TimeBasedFaresTable.TABLE_NAME,
+                    TimeBasedFaresTable.ID,
+                    "=",
+                    id
+                )
                 , null
             )
 
             if (cursor.count > 0) {
                 while (cursor.moveToNext()) {
-                    ret = TimeBasedFeeTable.fromString(cursor.getString(TimeBasedFaresTable.DATA_COL))
+                    ret =
+                        TimeBasedFeeTable.fromString(cursor.getString(TimeBasedFaresTable.DATA_COL))
                 }
             }
             cursor?.close()
@@ -318,7 +357,12 @@ class DBRead {
         fun user(db: SQLiteDatabase, uid: String): User? {
             val user = User()
             val cursor = db.rawQuery(
-                SQLQueryHelper.selectWhere(UsersTable.TABLE_NAME, UsersTable.UID, "=", uid.toUpperCase())
+                SQLQueryHelper.selectWhere(
+                    UsersTable.TABLE_NAME,
+                    UsersTable.UID,
+                    "=",
+                    uid.toUpperCase()
+                )
                 , null
             )
 
@@ -328,13 +372,15 @@ class DBRead {
                     user.companyId = (cursor.getString(UsersTable.COMPANY_ID_COL))
                     user.shortName = (cursor.getString(UsersTable.SHORT_NAME_COL))
                     user.longName = (cursor.getString(UsersTable.LONG_NAME_COL))
-                    user.effective = EffectivePeriod.fromString(cursor.getString(UsersTable.USER_EFFECTIVE_COL))
+                    user.effective =
+                        EffectivePeriod.fromString(cursor.getString(UsersTable.USER_EFFECTIVE_COL))
 
                     val cards = ArrayList<IdCards>()
                     val idCard = IdCards()
                     idCard.uid = (cursor.getString(UsersTable.UID_COL))
                     idCard.role = (cursor.getString(UsersTable.ROLE_COL))
-                    idCard.effective = EffectivePeriod.fromString(cursor.getString(UsersTable.CARD_EFFECTIVE_COL))
+                    idCard.effective =
+                        EffectivePeriod.fromString(cursor.getString(UsersTable.CARD_EFFECTIVE_COL))
 
                     cards.add(idCard)
                     user.idCards = cards
@@ -360,7 +406,12 @@ class DBRead {
         fun version(db: SQLiteDatabase, tableName: String): Int? {
             var version = 0
             val cursor = db.rawQuery(
-                SQLQueryHelper.selectWhere(VersionsTable.TABLE_NAME, VersionsTable.TABLE_NAME_COL, "=", tableName)
+                SQLQueryHelper.selectWhere(
+                    VersionsTable.TABLE_NAME,
+                    VersionsTable.TABLE_NAME_COL,
+                    "=",
+                    tableName
+                )
                 , null
             )
 
@@ -373,10 +424,15 @@ class DBRead {
             return version
         }
 
-        fun printTemplate(db: SQLiteDatabase, id: Long) : PrintTemplate?{
+        fun printTemplate(db: SQLiteDatabase, id: Long): PrintTemplate? {
             var ret = PrintTemplate()
             val cursor = db.rawQuery(
-                SQLQueryHelper.selectWhere(PrintTemplatesTable.TABLE_NAME, PrintTemplatesTable.ID, "=", id)
+                SQLQueryHelper.selectWhere(
+                    PrintTemplatesTable.TABLE_NAME,
+                    PrintTemplatesTable.ID,
+                    "=",
+                    id
+                )
                 , null
             )
 
@@ -389,10 +445,15 @@ class DBRead {
             return ret
         }
 
-        fun printTemplate(db: SQLiteDatabase, type: String) : PrintTemplate?{
+        fun printTemplate(db: SQLiteDatabase, type: String): PrintTemplate? {
             var ret = PrintTemplate()
             val cursor = db.rawQuery(
-                SQLQueryHelper.selectWhere(PrintTemplatesTable.TABLE_NAME, PrintTemplatesTable.TYPE, "=", type)
+                SQLQueryHelper.selectWhere(
+                    PrintTemplatesTable.TABLE_NAME,
+                    PrintTemplatesTable.TYPE,
+                    "=",
+                    type
+                )
                 , null
             )
 
