@@ -19,6 +19,7 @@ class DBInsert {
         fun transaction(db : SQLiteDatabase, mtc : Long, transaction : String, transactionType : String, dateInserted: String) : Long{
             val value = ContentValues()
 
+            value.put(TransactionsTable.MTC,mtc)
             value.put(TransactionsTable.TRANSACTION_DATA,transaction)
             value.put(TransactionsTable.TRANSACTION_TYPE,transactionType)
             value.put(TransactionsTable.DATE_INSERTED,dateInserted)
@@ -27,6 +28,26 @@ class DBInsert {
         }
 
         fun cardTransaction(db : SQLiteDatabase,mtc : Long, transaction : String, dateInserted: String) : Long{
+            val value = ContentValues()
+
+            value.put(CardTransactionsTable.MTC,mtc)
+            value.put(CardTransactionsTable.TRANSACTION_DATA,transaction)
+            value.put(CardTransactionsTable.DATE_INSERTED,dateInserted)
+
+            return db.insertWithOnConflict(CardTransactionsTable.TABLE_NAME,null,value,SQLiteDatabase.CONFLICT_REPLACE)
+        }
+
+        fun transaction(db : SQLiteDatabase, transaction : String, transactionType : String, dateInserted: String) : Long{
+            val value = ContentValues()
+
+            value.put(TransactionsTable.TRANSACTION_DATA,transaction)
+            value.put(TransactionsTable.TRANSACTION_TYPE,transactionType)
+            value.put(TransactionsTable.DATE_INSERTED,dateInserted)
+
+            return db.insertWithOnConflict(TransactionsTable.TABLE_NAME,null,value,SQLiteDatabase.CONFLICT_REPLACE)
+        }
+
+        fun cardTransaction(db : SQLiteDatabase, transaction : String, dateInserted: String) : Long{
             val value = ContentValues()
 
             value.put(CardTransactionsTable.TRANSACTION_DATA,transaction)
