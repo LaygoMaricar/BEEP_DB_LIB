@@ -225,7 +225,7 @@ class DBInsert {
             values.put("name", tableName)
 
             return db.insertWithOnConflict(
-                "SQLITE_SEQUENCE",
+                "sqlite_sequence",
                 null,
                 values,
                 SQLiteDatabase.CONFLICT_REPLACE
