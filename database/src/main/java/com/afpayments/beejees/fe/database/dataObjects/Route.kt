@@ -26,6 +26,7 @@ class Route {
     var stops : ArrayList<Stop>? = null
     var fareStrategy : String? = null
     var fareTables : FareTables? = null
+    var fareAggregation : String? = null
 
     @Serializable
     class FareTables{
