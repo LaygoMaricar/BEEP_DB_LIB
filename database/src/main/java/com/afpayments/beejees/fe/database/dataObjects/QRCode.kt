@@ -26,12 +26,12 @@ class QRCode {
     var issuerTerminalId : String? = null
 
     override fun toString(): String {
-        return Json.stringify(serializer(),this)
+        return Json.nonstrict.stringify(serializer(),this)
     }
 
     companion object{
         fun fromString(jsonString: String): QRCode {
-            return Json.parse(serializer(), jsonString)
+            return Json.nonstrict.parse(serializer(), jsonString)
         }
     }
 }

@@ -14,12 +14,12 @@ class FixedBasedFareTable {
     var prorated : Boolean? = null
 
     override fun toString(): String {
-        return Json.stringify(serializer(),this)
+        return Json.nonstrict.stringify(serializer(),this)
     }
 
     companion object{
         fun fromString(jsonString: String): FixedBasedFareTable {
-            return Json.parse(serializer(), jsonString)
+            return Json.nonstrict.parse(serializer(), jsonString)
         }
     }
 }

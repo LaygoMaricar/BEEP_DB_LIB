@@ -15,12 +15,12 @@ class TimeBasedFeeTable {
     var prorated : Boolean? = null
 
     override fun toString(): String {
-        return Json.stringify(serializer(),this)
+        return Json.nonstrict.stringify(serializer(),this)
     }
 
     companion object{
         fun fromString(jsonString: String): TimeBasedFeeTable {
-            return Json.parse(serializer(), jsonString)
+            return Json.nonstrict.parse(serializer(), jsonString)
         }
     }
 
@@ -30,12 +30,12 @@ class TimeBasedFeeTable {
         var amount : Long? = null
 
         override fun toString(): String {
-            return Json.stringify(serializer(),this)
+            return Json.nonstrict.stringify(serializer(),this)
         }
 
         companion object{
             fun fromString(jsonString: String): InitialFare {
-                return Json.parse(serializer(), jsonString)
+                return Json.nonstrict.parse(serializer(), jsonString)
             }
         }
     }

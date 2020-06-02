@@ -13,12 +13,12 @@ class PrintTemplate {
     var effective : EffectivePeriod? = null
 
     override fun toString(): String {
-        return Json.stringify(serializer(),this)
+        return Json.nonstrict.stringify(serializer(),this)
     }
 
     companion object{
         fun fromString(jsonString: String): PrintTemplate {
-            return Json.parse(serializer(), jsonString)
+            return Json.nonstrict.parse(serializer(), jsonString)
         }
     }
 }

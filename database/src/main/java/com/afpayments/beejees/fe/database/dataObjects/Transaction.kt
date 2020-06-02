@@ -16,12 +16,12 @@ class Transaction {
         const val DISCOUNT_PRODUCT = "discount_product"
 
         fun fromString(jsonString: String): Transaction {
-            return Json.parse(serializer(), jsonString)
+            return Json.nonstrict.parse(serializer(), jsonString)
         }
     }
 
     override fun toString(): String {
-        return Json.stringify(serializer(),this)
+        return Json.nonstrict.stringify(serializer(),this)
     }
 
     var id : String? = null

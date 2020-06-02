@@ -10,11 +10,11 @@ class Route {
         const val DEBIT_DEBIT = "debit_debit"
 
         fun fromString(jsonString: String): Route {
-            return Json.parse(serializer(), jsonString)
+            return Json.nonstrict.parse(serializer(), jsonString)
         }
     }
     override fun toString(): String {
-        return Json.stringify(serializer(),this)
+        return Json.nonstrict.stringify(serializer(),this)
     }
 
 
@@ -32,12 +32,12 @@ class Route {
 
         companion object{
             fun fromString(jsonString: String): FareTables {
-                return Json.parse(serializer(), jsonString)
+                return Json.nonstrict.parse(serializer(), jsonString)
             }
         }
 
         override fun toString(): String {
-            return Json.stringify(serializer(),this)
+            return Json.nonstrict.stringify(serializer(),this)
         }
 
         var distanceBased : ArrayList<Long>? = null
