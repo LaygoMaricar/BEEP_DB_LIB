@@ -10,12 +10,12 @@ class CardSet {
     var vehicleTypes : ArrayList<Long>? = null
 
     override fun toString(): String {
-        return Json.stringify(serializer(),this)
+        return Json.nonstrict.stringify(serializer(),this)
     }
 
     companion object {
         fun fromString(jsonString: String): CardSet {
-            return Json.parse(serializer(), jsonString)
+            return Json.nonstrict.parse(serializer(), jsonString)
         }
     }
 
@@ -25,13 +25,13 @@ class CardSet {
         var end : Long? = null
 
         override fun toString(): String {
-            return Json.stringify(serializer(),this)
+            return Json.nonstrict.stringify(serializer(),this)
         }
 
 
         companion object {
             fun fromString(jsonString: String): AccountRange {
-                return Json.parse(serializer(), jsonString)
+                return Json.nonstrict.parse(serializer(), jsonString)
             }
         }
     }

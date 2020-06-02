@@ -17,11 +17,11 @@ class StopBasedFareTable {
 
     companion object{
         fun fromString(jsonString: String): StopBasedFareTable {
-            return Json.parse(serializer(), jsonString)
+            return Json.nonstrict.parse(serializer(), jsonString)
         }
     }
     override fun toString(): String {
-        return Json.stringify(serializer(),this)
+        return Json.nonstrict.stringify(serializer(),this)
     }
 
 

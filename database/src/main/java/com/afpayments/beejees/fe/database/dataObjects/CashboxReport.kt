@@ -16,12 +16,12 @@ class CashboxReport {
     var sums : Sums? = null
 
     override fun toString(): String {
-        return Json.stringify(serializer(),this)
+        return Json.nonstrict.stringify(serializer(),this)
     }
 
     companion object {
         fun fromString(jsonString: String): CashboxReport {
-            return Json.parse(serializer(), jsonString)
+            return Json.nonstrict.parse(serializer(), jsonString)
         }
     }
 }

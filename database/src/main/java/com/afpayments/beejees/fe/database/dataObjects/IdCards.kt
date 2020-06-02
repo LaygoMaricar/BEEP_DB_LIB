@@ -10,7 +10,7 @@ class IdCards {
     var effective : EffectivePeriod? = null
 
     override fun toString(): String {
-        return Json.stringify(serializer(),this)
+        return Json.nonstrict.stringify(serializer(),this)
     }
 
     companion object{
@@ -21,7 +21,7 @@ class IdCards {
         const val SUPER = "super"
 
         fun fromString(jsonString: String): IdCards {
-            return Json.parse(serializer(), jsonString)
+            return Json.nonstrict.parse(serializer(), jsonString)
         }
     }
 }

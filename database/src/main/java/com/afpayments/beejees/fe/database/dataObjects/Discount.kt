@@ -12,7 +12,7 @@ class Discount {
         const val EXACT = "exact"
 
         fun fromString(jsonString: String): Discount {
-            return Json.parse(serializer(), jsonString)
+            return Json.nonstrict.parse(serializer(), jsonString)
         }
 
     }
@@ -28,7 +28,7 @@ class Discount {
     var prorated : Boolean? = null
     
     override fun toString(): String {
-        return Json.stringify(serializer(),this)
+        return Json.nonstrict.stringify(serializer(),this)
     }
 
 }

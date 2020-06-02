@@ -15,12 +15,12 @@ class FinancialTransaction {
         const val PAYMENT_BPI = "BPI"
 
         fun fromString(jsonString: String): FinancialTransaction {
-            return Json.parse(serializer(), jsonString)
+            return Json.nonstrict.parse(serializer(), jsonString)
         }
     }
 
     override fun toString(): String {
-        return Json.stringify(serializer(),this)
+        return Json.nonstrict.stringify(serializer(),this)
     }
 
     var id : String? = null

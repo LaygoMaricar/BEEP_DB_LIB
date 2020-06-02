@@ -7,11 +7,11 @@ import kotlinx.serialization.json.Json
 class DistanceBasedFareTable {
     companion object{
         fun fromString(jsonString: String): DistanceBasedFareTable {
-            return Json.parse(serializer(), jsonString)
+            return Json.nonstrict.parse(serializer(), jsonString)
         }
     }
     override fun toString(): String {
-        return Json.stringify(serializer(),this)
+        return Json.nonstrict.stringify(serializer(),this)
     }
 
 
@@ -30,11 +30,11 @@ class DistanceBasedFareTable {
         var amount : Long? = null
 
         override fun toString(): String {
-            return Json.stringify(serializer(),this)
+            return Json.nonstrict.stringify(serializer(),this)
         }
         companion object{
             fun fromString(jsonString: String): BaseFare {
-                return Json.parse(serializer(), jsonString)
+                return Json.nonstrict.parse(serializer(), jsonString)
             }
         }
     }

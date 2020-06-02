@@ -21,12 +21,12 @@ class Heartbeat {
     var message : String? = null
 
     override fun toString(): String {
-        return Json.stringify(serializer(),this)
+        return Json.nonstrict.stringify(serializer(),this)
     }
 
     companion object{
         fun fromString(jsonString: String): Heartbeat {
-            return Json.parse(serializer(), jsonString)
+            return Json.nonstrict.parse(serializer(), jsonString)
         }
     }
 
@@ -39,12 +39,12 @@ class Heartbeat {
         var direction : String? = null
 
         override fun toString(): String {
-            return Json.stringify(serializer(),this)
+            return Json.nonstrict.stringify(serializer(),this)
         }
 
         companion object{
             fun fromString(jsonString: String): VehicleStatus {
-                return Json.parse(serializer(), jsonString)
+                return Json.nonstrict.parse(serializer(), jsonString)
             }
         }
 
@@ -56,11 +56,11 @@ class Heartbeat {
                 const val COARSE = "coarse"
 
                 fun fromString(jsonString: String): Position {
-                    return Json.parse(serializer(), jsonString)
+                    return Json.nonstrict.parse(serializer(), jsonString)
                 }
             }
             override fun toString(): String {
-                return Json.stringify(serializer(),this)
+                return Json.nonstrict.stringify(serializer(),this)
             }
             var lat : String? = null
             var lon : String? = null

@@ -11,7 +11,7 @@ class Item {
         const val QR = "qr"
 
         fun fromString(jsonString: String): Item {
-            return Json.parse(serializer(), jsonString)
+            return Json.nonstrict.parse(serializer(), jsonString)
         }
     }
 
@@ -24,7 +24,7 @@ class Item {
     }
 
     override fun toString(): String {
-        return Json.stringify(serializer(), this)
+        return Json.nonstrict.stringify(serializer(), this)
     }
 
     var type: String? = null

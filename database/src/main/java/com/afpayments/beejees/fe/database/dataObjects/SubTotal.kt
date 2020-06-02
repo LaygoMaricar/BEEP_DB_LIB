@@ -12,7 +12,7 @@ class SubTotal{
         const val SENIOR = "senior"
 
         fun fromString(jsonString: String): SubTotal {
-            return Json.parse(serializer(), jsonString)
+            return Json.nonstrict.parse(serializer(), jsonString)
         }
     }
 
@@ -32,7 +32,7 @@ class SubTotal{
     }
 
     override fun toString(): String {
-        return Json.stringify(serializer(),this)
+        return Json.nonstrict.stringify(serializer(),this)
     }
 
     var type : String? = null
