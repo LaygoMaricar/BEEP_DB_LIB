@@ -24,6 +24,8 @@ class QRCode {
     var timeTicketCreationTime : String? = null
     var slipNumber : Long? = null
     var issuerTerminalId : String? = null
+    var ticketType : Long? = null
+    var creatorId : Int? = null
 
     override fun toString(): String {
         return Json.nonstrict.stringify(serializer(),this)
