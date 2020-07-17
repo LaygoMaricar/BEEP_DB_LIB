@@ -74,7 +74,7 @@ class DBInsert {
             return db.insertWithOnConflict(CashboxReportsTable.TABLE_NAME,null,value,SQLiteDatabase.CONFLICT_REPLACE)
         }
 
-        fun user(db: SQLiteDatabase, id : Long, companyId : String, shortName : String, longName : String, uid : String, role : String, userEffective : String, cardEffective : String) : Long{
+        fun user(db: SQLiteDatabase, id : Long, companyId : String, shortName : String, longName : String, uid : String, role : String, userEffective : String, cardEffective : String, operatorId: Int) : Long{
             val value = ContentValues()
 
             value.put(UsersTable.ID,id)
@@ -85,6 +85,7 @@ class DBInsert {
             value.put(UsersTable.ROLE,role)
             value.put(UsersTable.USER_EFFECTIVE,userEffective)
             value.put(UsersTable.CARD_EFFECTIVE,cardEffective)
+            value.put(UsersTable.OPERATOR_ID,operatorId)
 
             return db.insertWithOnConflict(UsersTable.TABLE_NAME,null,value,SQLiteDatabase.CONFLICT_REPLACE)
         }
@@ -100,7 +101,8 @@ class DBInsert {
                     user.idCards!![i].uid!!,
                     user.idCards!![i].role!!,
                     user.effective!!.toString(),
-                    user.idCards!![i].effective!!.toString()
+                    user.idCards!![i].effective!!.toString(),
+                    user.operatorId!!
                 )
             }
         }
@@ -236,6 +238,15 @@ class DBInsert {
 
             return db.insertWithOnConflict(PrintTemplatesTable.TABLE_NAME,null,value,SQLiteDatabase.CONFLICT_REPLACE)
 
+        }
+
+        fun operator(db: SQLiteDatabase, id: Int, data: String): Long {
+            val value = ContentValues()
+
+            value.put(OperatorTable.ID, id)
+            value.put(OperatorTable.DATA, data)
+
+            return db.insertWithOnConflict(OperatorTable.TABLE_NAME, null, value, SQLiteDatabase.CONFLICT_REPLACE)
         }
 
         fun sqliteSequence(db : SQLiteDatabase, tableName: String, index : Int) : Long {

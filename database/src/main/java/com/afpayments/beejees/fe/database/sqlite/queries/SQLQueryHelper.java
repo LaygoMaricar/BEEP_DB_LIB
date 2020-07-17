@@ -14,6 +14,10 @@ public class SQLQueryHelper {
         return "SELECT * from " + tableName + " where " + columnName + " " + operand + " " + criteria + " ";
     }
 
+    public static String selectWhere(String tableName, String columnName, String operand , int criteria){
+        return "SELECT * from " + tableName + " where " + columnName + " " + operand + " " + criteria + " ";
+    }
+
     public static String selectWhereLimit(String tableName, String columnName, String operand , String criteria, Long limit){
         return "SELECT * from " + tableName + " where " + columnName + " " + operand + " '" + criteria + "' Limit " + limit;
     }

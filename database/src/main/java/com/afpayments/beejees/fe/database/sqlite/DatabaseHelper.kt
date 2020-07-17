@@ -13,7 +13,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DB_DIR + File
 
     companion object{
         const val DB_NAME = "beejeesFrontEnd.db"
-        const val DB_VERSION = 1
+        const val DB_VERSION = 2
         val DB_DIR = BeepStorage.BEEP_FOLDER
     }
 
@@ -42,10 +42,11 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DB_DIR + File
             p0.execSQL(QueryCreate.TIME_BASED_FARE_TABLE)
             p0.execSQL(QueryCreate.PRINT_TEMPLATE_TABLE)
             p0.execSQL(QueryCreate.CASHBOX_REPORTS_TABLE)
+            p0.execSQL(QueryCreate.OPERATORS_TABLE)
         }
     }
 
     override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
-
+        p0?.execSQL(QueryCreate.OPERATORS_TABLE)
     }
 }

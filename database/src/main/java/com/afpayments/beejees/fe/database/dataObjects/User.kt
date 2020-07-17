@@ -11,6 +11,7 @@ class User {
     var longName : String? = null
     var idCards : ArrayList<IdCards>? = null
     var effective : EffectivePeriod? = null
+    var operatorId: Int? = null
 
     override fun toString(): String {
         return Json.nonstrict.stringify(serializer(),this)

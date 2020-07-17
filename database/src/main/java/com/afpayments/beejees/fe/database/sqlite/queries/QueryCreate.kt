@@ -109,5 +109,9 @@ class QueryCreate {
                     "( `${CashboxReportsTable.MTC}` INTEGER PRIMARY KEY AUTOINCREMENT," +
                     " `${CashboxReportsTable.REPORT_DATA}` TEXT," +
                     " `${CashboxReportsTable.DATE_INSERTED}` TEXT )"
+        const val OPERATORS_TABLE =
+            "CREATE TABLE IF NOT EXISTS  `${OperatorTable.TABLE_NAME}` " +
+                    "( `${OperatorTable.ID}` INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    " `${OperatorTable.DATA}` TEXT )"
     }
 }

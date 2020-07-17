@@ -11,6 +11,7 @@ class UsersTable {
         const val ROLE = "role"
         const val USER_EFFECTIVE = "userEffective"
         const val CARD_EFFECTIVE = "cardEffective"
+        const val OPERATOR_ID = "operatorId"
 
         const val ID_COL = 0
         const val COMPANY_ID_COL = 1
@@ -20,5 +21,6 @@ class UsersTable {
         const val ROLE_COL = 5
         const val USER_EFFECTIVE_COL = 6
         const val CARD_EFFECTIVE_COL = 7
+        const val OPERATOR_ID_COL = 8
     }
 }

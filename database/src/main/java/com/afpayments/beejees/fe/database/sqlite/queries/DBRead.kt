@@ -384,6 +384,7 @@ class DBRead {
 
                     cards.add(idCard)
                     user.idCards = cards
+                    user.operatorId = cursor.getInt(UsersTable.OPERATOR_ID_COL)
                 }
             }
             cursor?.close()
@@ -500,6 +501,22 @@ class DBRead {
             }
             cursor?.close()
             return reports
+        }
+
+        fun operator(db: SQLiteDatabase, id: Int): Operator? {
+            var ret = Operator()
+            val cursor = db.rawQuery(
+                SQLQueryHelper.selectWhere(OperatorTable.TABLE_NAME, OperatorTable.ID, "=", id)
+                , null
+            )
+
+            if (cursor.count > 0) {
+                while (cursor.moveToNext()) {
+                    ret = Operator.fromString(cursor.getString(OperatorTable.DATA_COL))
+                }
+            }
+            cursor?.close()
+            return ret
         }
 
         fun sqliteSequence(db: SQLiteDatabase, tableName: String): Int {
