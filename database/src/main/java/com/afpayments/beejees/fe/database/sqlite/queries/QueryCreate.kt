@@ -32,6 +32,7 @@ class QueryCreate {
                     " `${UsersTable.ROLE}` TEXT," +
                     " `${UsersTable.USER_EFFECTIVE}` TEXT," +
                     " `${UsersTable.CARD_EFFECTIVE}` TEXT," +
+                    " `${UsersTable.OPERATOR_ID}` INTEGER NULL," +
                     " unique(`${UsersTable.ID}`,`${UsersTable.UID}`) )"
         const val VEHICLE_TABLE =
             "CREATE TABLE IF NOT EXISTS  `${VehicleTable.TABLE_NAME}` " +

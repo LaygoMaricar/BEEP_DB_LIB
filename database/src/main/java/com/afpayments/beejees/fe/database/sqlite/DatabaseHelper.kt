@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.os.Environment
+import com.afpayments.beejees.fe.database.sqlite.queries.QueryAlter
 import com.afpayments.beejees.fe.database.sqlite.queries.QueryCreate
 import timber.log.Timber
 import java.io.File
@@ -48,5 +49,6 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DB_DIR + File
 
     override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
         p0?.execSQL(QueryCreate.OPERATORS_TABLE)
+        p0?.execSQL(QueryAlter.USERS_TABLE)
     }
 }
