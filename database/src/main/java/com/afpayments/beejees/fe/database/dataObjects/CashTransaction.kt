@@ -20,6 +20,7 @@ class CashTransaction {
     var luggage : ArrayList<Luggage>? = null
     var productType : String? = null
     var paymentType : String? = null
+    var slipNumber: Long? = null
 
     override fun toString(): String {
         return Json.nonstrict.stringify(serializer(),this)
